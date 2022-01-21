@@ -1,0 +1,218 @@
+<html>
+<head>
+	<title>Chandra Calculator</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script language="JavaScript">
+	function getRadioValue(item) { 
+	      var ele = document.getElementsByName(item); 
+
+	      for(i = 0; i < ele.length; i++) { 
+	          if(ele[i].checked) 
+	    		  return ele[i].value; 
+	      } 
+	  }
+	function calculate() {
+		
+		let intercept = Number(-2.242755);
+		let age = Number(document.getElementById("age").value);
+		let sex = Number(getRadioValue('sex'));
+		let race = Number(getRadioValue('race'));
+		let opioid = Number(document.getElementById("opioid").value);
+		let substance = Number(getRadioValue('substance'));
+		let benzodiazepine = Number(getRadioValue('benzodiazepine'));
+		let anxiolytic = Number(getRadioValue('anxiolytic'));
+		let antidepressant = Number(getRadioValue('antidepressant'));
+		let anticonvulsant = Number(getRadioValue('anticonvulsant'));
+		let nsaid = Number(getRadioValue('nsaid'));
+		
+		let p = intercept 
+		+ age * -0.015324
+		+ sex * -0.181840 
+		+ race
+		+ opioid * 0.288242
+		+ substance * 0.129075
+		+ benzodiazepine * 0.363302 
+		+ anxiolytic * 0.240382
+		+ anticonvulsant * 0.222965
+		+ antidepressant * 0.151266
+		+ nsaid * 0.191026;
+
+    let Predictedrisk = Math.round(100*(2.718281828459**p)/(1 + 2.71828182845**p));
+    
+			
+		document.getElementById('score').innerHTML = Predictedrisk;
+	}
+  </script>
+</head>
+
+
+<body>
+<h3>Online risk calculator to estimate the 1-yr risk of persistent high-dose opioid after Total Knee Replacement </h3>
+<br />
+<h6>Citation: Gopalakrishnan C, Desai RJ, Franklin JM, Jin Y, Lii J, Solomon DH, Katz JN, Lee YC, Franklin PD, Kim SC. 
+    Development of a Medicare Claims-Based Model to Predict Persistent High-Dose Opioid Use After Total Knee Replacement. 
+    Arthritis Care Res. XXXXXXXX</h6>
+
+
+<br />
+<br />
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-8">
+
+<form class="col-lg-6 offset-lg-3">
+  <div class="form-group row">
+    <label for="age" class="col-4 col-form-label">Age</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="age" name="age" placeholder="Your Age - 65 and above" type="text" required="required" class="form-control"> 
+        <div class="input-group-append">
+          <div class="input-group-text">years</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Sex</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="sex" id="sex_0" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="sex_0" class="custom-control-label">Male</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="sex" id="sex_1" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="sex_1" class="custom-control-label">Female</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Race</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="race" id="race_0" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="race_0" class="custom-control-label">White</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="race" id="race_1" type="radio" required="required" class="custom-control-input" value="0.407040"> 
+        <label for="race_1" class="custom-control-label">Black</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="race" id="race_2" type="radio" required="required" class="custom-control-input" value="0.141417"> 
+        <label for="race_2" class="custom-control-label">Other</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="opioid" class="col-4 col-form-label">Baseline opioid use</label> 
+    <div class="col-8">
+      <div class="input-group">
+        <input id="opioid" name="opioid" placeholder="0 - 25" type="text" required="required" class="form-control"> 
+        <div class="input-group-append">
+          <div class="input-group-text">MME/day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Substance Use</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="substance" id="substance_0" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="substance_0" class="custom-control-label">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="substance" id="substance_1" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="substance_1" class="custom-control-label">No</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Benzodiazepine Use</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="benzodiazepine" id="benzodiazepine_0" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="benzodiazepine_0" class="custom-control-label">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="benzodiazepine" id="benzodiazepine_1" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="benzodiazepine_1" class="custom-control-label">No</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Anxiolytic Use</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="anxiolytic" id="anxiolytic_0" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="anxiolytic_0" class="custom-control-label">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="anxiolytic" id="anxiolytic_1" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="anxiolytic_1" class="custom-control-label">No</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Anticonvulsant Use</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="anticonvulsant" id="anticonvulsant_0" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="anticonvulsant_0" class="custom-control-label">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="anticonvulsant" id="anticonvulsant_1" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="anticonvulsant_1" class="custom-control-label">No</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Antidepressant Use</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="antidepressant" id="antidepressant_0" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="antidepressant_0" class="custom-control-label">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="antidepressant" id="antidepressant_1" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="antidepressant_1" class="custom-control-label">No</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">NSAID Use</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="nsaid" id="nsaid_0" type="radio" required="required" class="custom-control-input" value="1"> 
+        <label for="nsaid_0" class="custom-control-label">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="nsaid" id="nsaid_1" type="radio" required="required" class="custom-control-input" value="0"> 
+        <label for="nsaid_1" class="custom-control-label">No</label>
+      </div>
+    </div>
+  </div> 
+</form>
+<div class="form-group row">
+	<div class="offset-4 col-8">
+  	  <button name="submit" type="submit" class="btn btn-primary" onclick="calculate();">Submit</button>
+	</div>
+</div>
+
+</div>
+<div class="col-md-4">
+	<div class="jumbotron">
+        <h4>Predicted 1-yr risk of persistent high-dose opioid use (%)</h4>
+        <br>
+		<h3 id="score">
+		Fill in required information and click 'Submit' to calculate risk	
+		</h3>
+	</div>
+</div>
+
+</div>
+</div>
+
+</body>
+
+</html>
